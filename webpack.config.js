@@ -26,6 +26,7 @@ Encore
     // show OS notifications when builds finish/fail
     .enableBuildNotifications()
 
+    // jQuery
 	.autoProvidejQuery()
 
 // create hashed filenames (e.g. app.abc123.css)

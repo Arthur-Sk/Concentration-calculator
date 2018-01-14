@@ -1,4 +1,5 @@
 {% extends 'base.html.twig' %}
+{% form_theme calc_form 'bootstrap_4_horizontal_layout.html.twig' %}
 
 {% block title %}Calculator{% endblock %}
 
@@ -14,10 +15,32 @@
     {% if values is defined %}
         {{ 'values is defined' }}
         <br />
-        {#{{ dump(values) }}#}
+        <table class="table table-bordered table-striped table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Base liquid concentrate, mg/ml</th>
+                    <th scope="col">Nicotine concentrate, mg/ml</th>
+                    <th scope="col">Final concentrate, mg/ml</th>
+                    <th scope="col">Nicotine volume, ml</th>
+                    <th scope="col">Liquid base volume, ml</th>
+                    <th scope="col">Final volume, ml</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>{{ values.cb }}</td>
+                <td>{{ values.cn }}</td>
+                <td>{{ values.cv }}</td>
+                <td>{{ Vn|round(1) }}</td>
+                <td>{{ Vb|round(1) }}</td>
+                <td>{{ values.Vv }}</td>
+            </tr>
+            </tbody>
+
         {#{{ values.cn }}#}
-        {{ Vn }}
-        {{ Vb }}
+        {#{{ Vn }}#}
+        {#{{ Vb }}#}
+        </table>
     {% endif %}
 
 {% endblock %}

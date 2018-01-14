@@ -39,10 +39,10 @@ class DefController extends Controller
         $calc->setVv('500');
 
         $calc_form = $this->createFormBuilder($calc)
-            ->add('cb', NumberType::class, array('label' => 'Base liquid concentrate'))
-            ->add('cn', NumberType::class, array('label' => 'Nicotine concentrate'))
-            ->add('cv', NumberType::class, array('label' => 'Needed concentrate'))
-            ->add('Vv', NumberType::class, array('label' => 'Needed volume'))
+            ->add('cb', NumberType::class, array('label' => 'Base liquid concentrate, mg/ml'))
+            ->add('cn', NumberType::class, array('label' => 'Nicotine concentrate, mg/ml'))
+            ->add('cv', NumberType::class, array('label' => 'Needed concentrate, mg/ml'))
+            ->add('Vv', NumberType::class, array('label' => 'Needed volume, ml'))
             ->add('save', SubmitType::class, array('label' => 'Calculate this'))
             ->getForm();
 

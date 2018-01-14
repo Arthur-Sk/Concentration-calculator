@@ -11,9 +11,8 @@ class Calc
      * @Assert\Range(
      *     min = 0,
      *     max = 100,
-     *     minMessage = "This value should be {{ limit }} or more.",
-     *     maxMessage = "This value should be {{ limit }} or less.",
-     *     invalidMessage = "This value should be a valid number."
+     *     minMessage = "Base concentrate should be {{ limit }} or more.",
+     *     maxMessage = "Base concentrate should be {{ limit }} or less.",
      * )
      */
     protected $cb;
@@ -22,9 +21,8 @@ class Calc
      * @Assert\Range(
      *     min = 0,
      *     max = 100,
-     *     minMessage = "This value should be {{ limit }} or more.",
-     *     maxMessage = "This value should be {{ limit }} or less.",
-     *     invalidMessage = "This value should be a valid number."
+     *     minMessage = "Nicotine concentrate should be {{ limit }} or more.",
+     *     maxMessage = "Nicotine concentrate should be {{ limit }} or less.",
      * )
      */
     protected $cn;
@@ -33,9 +31,8 @@ class Calc
      * @Assert\Range(
      *     min = 0,
      *     max = 100,
-     *     minMessage = "This value should be {{ limit }} or more.",
-     *     maxMessage = "This value should be {{ limit }} or less.",
-     *     invalidMessage = "This value should be a valid number."
+     *     minMessage = "Needed concentrate should be {{ limit }} or more.",
+     *     maxMessage = "Needed concentrate should be {{ limit }} or less.",
      * )
      */
     protected $cv;
@@ -43,8 +40,8 @@ class Calc
      * @Assert\NotBlank()
      * @Assert\Range(
      *     min = 0,
-     *     minMessage = "This value should be {{ limit }} or more.",
-     *     invalidMessage = "This value should be a valid number."
+     *     max = 100000,
+     *     minMessage = "Needed volume should be {{ limit }} or more.",
      * )
      */
     protected $Vv;
