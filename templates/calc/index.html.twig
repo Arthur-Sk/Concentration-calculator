@@ -1,12 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Welcome{% endblock %}
+{% block title %}Calculator{% endblock %}
 
 {% block body %}
     <br />
-    <p>Calc page</p>
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    {{ form_end(form) }}
+    <h3>Vape base liquid nicotine strength calculator</h3>
+    {% if calc_form is defined %}
+        {{ form_start(calc_form) }}
+        {{ form_widget(calc_form) }}
+        {{ form_end(calc_form) }}
+    {% endif %}
+
+    {% if values is defined %}
+        {{ 'values is defined' }}
+        <br />
+        {#{{ dump(values) }}#}
+        {#{{ values.cn }}#}
+        {{ Vn }}
+        {{ Vb }}
+    {% endif %}
 
 {% endblock %}

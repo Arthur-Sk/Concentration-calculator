@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\Calc;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,23 +31,37 @@ class DefController extends Controller
 
     public function new(Request $request)
     {
-        // create a task and give it some dummy data for this example
-        $task = new Calc();
-        $task->setCb('0');
-        $task->setCn('72');
-        $task->setCv('6');
-        $task->setVv('500');
 
-        $form = $this->createFormBuilder($task)
-            ->add('cb', TextType::class)
-            ->add('cn', TextType::class)
-            ->add('cv', TextType::class)
-            ->add('Vv', TextType::class)
+        $calc = new Calc();
+        $calc->setCb('0');
+        $calc->setCn('72');
+        $calc->setCv('6');
+        $calc->setVv('500');
+
+        $calc_form = $this->createFormBuilder($calc)
+            ->add('cb', NumberType::class, array('label' => 'Base liquid concentrate'))
+            ->add('cn', NumberType::class, array('label' => 'Nicotine concentrate'))
+            ->add('cv', NumberType::class, array('label' => 'Needed concentrate'))
+            ->add('Vv', NumberType::class, array('label' => 'Needed volume'))
             ->add('save', SubmitType::class, array('label' => 'Calculate this'))
             ->getForm();
 
+        $calc_form->handleRequest($request);
+
+        if ($calc_form->isSubmitted() && $calc_form->isValid()) {
+
+            $values = $calc_form->getData();
+
+            return $this->render('calc/index.html.twig', array(
+                'calc_form' => $calc_form->createView(),
+                'values' => $values,
+                'Vn' => $calc->getVn($calc->getVv(),$calc->getCv(),$calc->getCb(),$calc->getCn()),
+                'Vb' => $calc->getVb($calc->getVv(),$calc->getCv(),$calc->getCb(),$calc->getCn())
+            ));
+        }
+
         return $this->render('calc/index.html.twig', array(
-            'form' => $form->createView(),
+            'calc_form' => $calc_form->createView(),
         ));
     }
 
@@ -61,8 +75,7 @@ class DefController extends Controller
      */
 
     public function blogResponse() {
-        return new Response('nothing here');
+        return $this->render('blog/index.html.twig');
     }
-
 
 }
