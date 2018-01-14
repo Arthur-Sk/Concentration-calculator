@@ -65,11 +65,6 @@ class DefController extends Controller
         ));
     }
 
-//    public function calcIndex()
-//    {
-//        return $this->render('calc/index.html.twig');
-//    }
-
     /**
      * @Route("/blog", name="blog")
      */
