@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Calc;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -40,7 +41,7 @@ class DefController extends Controller
 
         $calc_form = $this->createFormBuilder($calc)
             ->add('cb', NumberType::class, array('label' => 'Base liquid concentrate, mg/ml'))
-            ->add('cn', NumberType::class, array('label' => 'Nicotine concentrate, mg/ml'))
+            ->add('cn', NumberType::class, array('label' => 'Nicotine (booster) concentrate, mg/ml'))
             ->add('cv', NumberType::class, array('label' => 'Needed concentrate, mg/ml'))
             ->add('Vv', NumberType::class, array('label' => 'Needed volume, ml'))
             ->add('save', SubmitType::class, array('label' => 'Calculate this'))
@@ -51,6 +52,20 @@ class DefController extends Controller
         if ($calc_form->isSubmitted() && $calc_form->isValid()) {
 
             $values = $calc_form->getData();
+
+            if ($calc->getCb()>$calc->getCn()){
+                $calc_form->addError(new FormError('Nicotine concentrate must be greater than the base liquid concentrate'));
+                return $this->render('calc/index.html.twig', array(
+                    'calc_form' => $calc_form->createView(),
+                ));
+            }
+
+            if ($calc->getCv()>$calc->getCn() || $calc->getCv()<$calc->getCb()){
+                $calc_form->addError(new FormError('Needed concentrate must be greater than the base liquid concentrate and lower that the nicotine concentrate'));
+                return $this->render('calc/index.html.twig', array(
+                    'calc_form' => $calc_form->createView(),
+                ));
+            }
 
             return $this->render('calc/index.html.twig', array(
                 'calc_form' => $calc_form->createView(),

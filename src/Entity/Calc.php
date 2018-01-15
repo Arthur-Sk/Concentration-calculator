@@ -21,8 +21,8 @@ class Calc
      * @Assert\Range(
      *     min = 0,
      *     max = 100,
-     *     minMessage = "Nicotine concentrate should be {{ limit }} or more.",
-     *     maxMessage = "Nicotine concentrate should be {{ limit }} or less.",
+     *     minMessage = "Nicotine (booster) concentrate should be {{ limit }} or more.",
+     *     maxMessage = "Nicotine (booster) concentrate should be {{ limit }} or less.",
      * )
      */
     protected $cn;
