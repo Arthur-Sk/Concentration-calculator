@@ -61,7 +61,7 @@ class DefController extends Controller
             }
 
             if ($calc->getCv()>$calc->getCn() || $calc->getCv()<$calc->getCb()){
-                $calc_form->addError(new FormError('Needed concentrate must be greater than the base liquid concentrate and lower that the nicotine concentrate'));
+                $calc_form->addError(new FormError('Needed concentrate must be greater than the base liquid concentrate and less than the nicotine concentrate'));
                 return $this->render('calc/index.html.twig', array(
                     'calc_form' => $calc_form->createView(),
                 ));
