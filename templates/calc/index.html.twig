@@ -5,7 +5,7 @@
 
 {% block body %}
     <br />
-    <h3>Vape base liquid nicotine strength calculator</h3>
+    <h3>Base liquid nicotine strength calculator</h3>
     {% if calc_form is defined %}
         {{ form_start(calc_form) }}
         {{ form_widget(calc_form) }}
@@ -20,8 +20,8 @@
                     <th scope="col">Base liquid concentrate, mg/ml</th>
                     <th scope="col">Nicotine (booster) concentrate, mg/ml</th>
                     <th scope="col">Final concentrate, mg/ml</th>
-                    <th scope="col">Nicotine (booster) volume, ml</th>
-                    <th scope="col">Liquid base volume, ml</th>
+                    <th scope="col" class="bg-primary">Nicotine (booster) volume, ml</th>
+                    <th scope="col" class="bg-primary">Liquid base volume, ml</th>
                     <th scope="col">Final volume, ml</th>
                 </tr>
             </thead>
@@ -30,8 +30,8 @@
                 <td>{{ values.cb }}</td>
                 <td>{{ values.cn }}</td>
                 <td>{{ values.cv }}</td>
-                <td>{{ Vn|round(1) }}</td>
-                <td>{{ Vb|round(1) }}</td>
+                <td class="bg-primary">{{ Vn|round(1) }}</td>
+                <td class="bg-primary">{{ Vb|round(1) }}</td>
                 <td>{{ values.Vv }}</td>
             </tr>
             </tbody>

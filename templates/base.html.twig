@@ -4,27 +4,42 @@
     <meta charset="UTF-8">
     <title>{% block title %}Base title{% endblock %}</title>
     {% block stylesheets %}
-        <link rel="stylesheet" href="{{ asset('build/css/app.css') }}">
-        <link rel="stylesheet" href="{{ asset('app.css') }}">
+        <link rel="stylesheet" href="{{ asset('build/css/app-demo.css') }}">
+        <link rel="stylesheet" href="{{ asset('build/css/main.css') }}">
     {% endblock %}
 </head>
 <body>
-<div class="container" id="sidebar">
-    {% block sidebar %}
-        <nav class="nav">
-            <a class="nav-link active" href="/">Welcome page</a>
-            <a class="nav-link active" href="/calc">Calculator</a>
-            <a class="nav-link" href="/blog">Blog</a>
-        </nav>
+<header>
+{% block header %}
+    <div class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                {% block navbar_buttons %}
+                    <a class="navbar-brand" href="/">Welcome page</a>
+                    <a class="navbar-brand" href="/calc/">Calculator</a>
+                    <a class="navbar-brand" href="/blog/">Blog</a>
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+</header>
 
-    {% endblock %}
+<div id="content" class="container body-container">
+    {% block body %}{% endblock %}
 </div>
+{% block javascripts %}
+    <script src="{{ asset('build/js/app.js') }}"></script>
+{% endblock %}
+{% block footer %}
+    <footer class="panel-footer">
+        <div class="container">
+            <div class="row text-center">
+                <p class="align-center">&copy; {{ 'now'|date('Y') }} - Blog <br />Here's footer</p>
+            </div>
+        </div>
+    </footer>
 
-<div id="content" class="container">
-    {% block body %}Base body{% endblock %}
-</div>
-    {% block javascripts %}
-        <script src="{{ asset('app.js') }}"></script>
-    {% endblock %}
+{% endblock %}
 </body>
 </html>

@@ -3,11 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Calc;
+use App\Entity\Post;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -27,10 +29,10 @@ class DefController extends Controller
     }
 
     /**
-     * @Route("/calc", name="calc")
+     * @Route("/calc/", name="calc")
      */
 
-    public function new(Request $request)
+    public function calc(Request $request)
     {
 
         $calc = new Calc();
@@ -44,7 +46,7 @@ class DefController extends Controller
             ->add('cn', NumberType::class, array('label' => 'Nicotine (booster) concentrate, mg/ml'))
             ->add('cv', NumberType::class, array('label' => 'Needed concentrate, mg/ml'))
             ->add('Vv', NumberType::class, array('label' => 'Needed volume, ml'))
-            ->add('save', SubmitType::class, array('label' => 'Calculate this'))
+            ->add('save', SubmitType::class, array('label' => 'Calculate this','attr' => array('class' => 'btn-primary')))
             ->getForm();
 
         $calc_form->handleRequest($request);
@@ -81,11 +83,27 @@ class DefController extends Controller
     }
 
     /**
-     * @Route("/blog", name="blog")
+     * @Route("/blog/", name="blog")
      */
 
-    public function blogResponse() {
-        return $this->render('blog/index.html.twig');
+    public function blog(Request $request)
+    {
+
+        $post = new Post();
+//        $calc->setCb('0');
+
+
+        $post_form= $this->createFormBuilder($post)
+            ->add('title', TextType::class, array('label' => 'Title '))
+            ->add('body', TextType::class, array('label' => 'Body '))
+            ->add('username', TextType::class, array('label' => 'Name '))
+            ->add('save', SubmitType::class, array('label' => 'Add post ','attr' => array('class' => 'btn btn-primary')))
+            ->getForm();
+
+        $post_form->handleRequest($request);
+
+        return $this->render('blog/index.html.twig', array(
+            'post_form' => $post_form->createView()));
     }
 
 }

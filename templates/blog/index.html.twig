@@ -3,7 +3,27 @@
 {% block title %}Blog{% endblock %}
 
 {% block body %}
-<br />
-<p>Blog page, nothing here</p>
+    <div class="row">
+        <div class="col-sm-8">
+        <article class="post">
+            <h2><a href="#">title</a></h2>
+            <p class="post-metadata"> <span class="metadata"><i class="fa fa-calendar"></i> Date</span></p>
+            <p>body</p>
+            <p class="post-tags">tags</p>
+        </article>
+        </div>
+        <div class="sidebar well well-lg col-sm-4">
+            <div class="form-group">
+            {{ form_start(post_form) }}
+                <div class="form-group">
+            {{ form_widget(post_form) }}
+                </div>
+            {{ form_end(post_form) }}
+            </div>
+        </div>
+    </div>
+    {#<a class="btn btn-primary navbar-right" href="#">Add a post</a>#}
+
+
 
 {% endblock %}
