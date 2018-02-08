@@ -4,26 +4,32 @@
 
 {% block body %}
     <div class="row">
-        <div class="col-sm-8">
-        <article class="post">
-            <h2><a href="#">title</a></h2>
-            <p class="post-metadata"> <span class="metadata"><i class="fa fa-calendar"></i> Date</span></p>
-            <p>body</p>
-            <p class="post-tags">tags</p>
-        </article>
+        <div class="col-sm-9">
+    {% if post_values is defined %}
+        {% for post in post_values %}
+
+
+            <article class="post">
+                <h2><a href="#">{{ post.title }}</a></h2>
+                <p class="post-metadata">
+                    <span class="metadata"><i class="fa fa-calendar"></i>Date</span>
+                    <span class="metadata"><i class="fa fa-user"></i>{{ post.username }}</span>
+                </p>
+                <p>{{ post.body }}</p>
+            </article>
+
+
+        {% endfor %}
+    {% endif %}
         </div>
-        <div class="sidebar well well-lg col-sm-4">
-            <div class="form-group">
+        <div class="sidebar well well-lg col-sm-3">
             {{ form_start(post_form) }}
-                <div class="form-group">
-            {{ form_widget(post_form) }}
-                </div>
-            {{ form_end(post_form) }}
+            <div class="form-group">
+                {{ form_widget(post_form) }}
             </div>
+            {{ form_end(post_form) }}
         </div>
     </div>
-    {#<a class="btn btn-primary navbar-right" href="#">Add a post</a>#}
-
 
 
 {% endblock %}

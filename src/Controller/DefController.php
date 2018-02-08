@@ -90,20 +90,55 @@ class DefController extends Controller
     {
 
         $post = new Post();
-//        $calc->setCb('0');
+        $post->setTitle('test title');
+        $post->setBody('test body');
+        $post->setUsername('test username');
 
 
         $post_form= $this->createFormBuilder($post)
-            ->add('title', TextType::class, array('label' => 'Title '))
-            ->add('body', TextType::class, array('label' => 'Body '))
-            ->add('username', TextType::class, array('label' => 'Name '))
-            ->add('save', SubmitType::class, array('label' => 'Add post ','attr' => array('class' => 'btn btn-primary')))
+            ->add('title', TextType::class, array('label' => 'Title'))
+            ->add('body', TextType::class, array('label' => 'Body'))
+            ->add('username', TextType::class, array('label' => 'Name'))
+            ->add('save', SubmitType::class, array('label' => 'Add post','attr' => array('class' => 'btn btn-primary')))
             ->getForm();
 
         $post_form->handleRequest($request);
 
+        if ($post_form->isSubmitted() && $post_form->isValid()) {
+            $post_values = $post_form->getData();
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($post_values);
+            $em->flush();
+        }
+        $post_values = $this->getDoctrine()
+            ->getRepository(Post::class)
+            ->findAll();
         return $this->render('blog/index.html.twig', array(
-            'post_form' => $post_form->createView()));
+            'post_form' => $post_form->createView(),
+            'post_values' => $post_values
+            ));
     }
 
+
+//    Show posts by id, test
+    /**
+     * @Route("/blog/{id}", name="post_show")
+     */
+
+    public function showAction($id)
+    {
+        $post = $this->getDoctrine()
+            ->getRepository(Post::class)
+            ->find($id);
+
+        if (!$post) {
+            throw $this->createNotFoundException(
+                'No product found for id ' . $id
+            );
+        }
+
+        return new Response('Post with id = '. $id . ' title: ' . $post->getTitle());
+
+    }
 }
