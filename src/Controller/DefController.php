@@ -123,22 +123,28 @@ class DefController extends Controller
 
 //    Show posts by id, test
     /**
-     * @Route("/blog/{id}", name="post_show")
+     * @Route("/blog/del{id}", name="delete_post")
      */
 
-    public function showAction($id)
+    public function deletePost($id)
     {
+
+        $em = $this->getDoctrine()->getManager();
+
         $post = $this->getDoctrine()
             ->getRepository(Post::class)
-            ->find($id);
+            ->findOneBy(array('id'=>$id));
 
         if (!$post) {
             throw $this->createNotFoundException(
-                'No product found for id ' . $id
+                'No post found for id ' . $id
             );
         }
 
-        return new Response('Post with id = '. $id . ' title: ' . $post->getTitle());
+        $em->remove($post);
+        $em->flush();
+
+        return new Response('Success with id = '. $id);
 
     }
 }

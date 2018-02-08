@@ -1,6 +1,7 @@
 require('../scss/app.scss');
 
 var $ = require('jquery');
+global.$ = global.jQuery = $;
 // JS is equivalent to the normal "bootstrap" package
 // no need to set this to a variable, just require it
 require('bootstrap-sass');
@@ -11,7 +12,7 @@ import 'bootstrap-sass/assets/javascripts/bootstrap/dropdown.js';
 import 'bootstrap-sass/assets/javascripts/bootstrap/modal.js';
 import 'bootstrap-sass/assets/javascripts/bootstrap/transition.js';
 
-
 $(document).ready(function() {
     $('[data-toggle="popover"]').popover();
+
 });

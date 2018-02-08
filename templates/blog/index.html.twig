@@ -4,7 +4,7 @@
 
 {% block body %}
     <div class="row">
-        <div class="col-sm-9">
+        <div class="col-sm-9 posts">
     {% if post_values is defined %}
         {% for post in post_values %}
 
@@ -17,7 +17,10 @@
                 </p>
                 <p>{{ post.body }}</p>
             </article>
-
+            <div class="row postBtns">
+                <a class="btn btn-primary btn-sm btn-del" data-postid="{{ post.id }}">Delete</a>
+                <a class="btn btn-primary btn-sm btn-edit" data-postid="{{ post.id }}">Edit</a>
+            </div>
 
         {% endfor %}
     {% endif %}
