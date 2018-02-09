@@ -1,15 +1,15 @@
 {% extends 'base.html.twig' %}
-{% form_theme calc_form 'bootstrap_4_horizontal_layout.html.twig' %}
+{% form_theme calcForm 'bootstrap_4_horizontal_layout.html.twig' %}
 
 {% block title %}Calculator{% endblock %}
 
 {% block body %}
     <br />
     <h3>Base liquid nicotine strength calculator</h3>
-    {% if calc_form is defined %}
-        {{ form_start(calc_form) }}
-        {{ form_widget(calc_form) }}
-        {{ form_end(calc_form) }}
+    {% if calcForm is defined %}
+        {{ form_start(calcForm) }}
+        {{ form_widget(calcForm) }}
+        {{ form_end(calcForm) }}
     {% endif %}
 
     {% if values is defined %}

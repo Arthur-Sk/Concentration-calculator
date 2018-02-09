@@ -5,8 +5,8 @@
 {% block body %}
     <div class="row">
         <div class="col-sm-9 posts">
-    {% if post_values is defined %}
-        {% for post in post_values %}
+    {% if postValues is defined %}
+        {% for post in postValues %}
 
 
             <article class="post">
@@ -26,11 +26,11 @@
     {% endif %}
         </div>
         <div class="sidebar well well-lg col-sm-3">
-            {{ form_start(post_form) }}
+            {{ form_start(postForm) }}
             <div class="form-group">
-                {{ form_widget(post_form) }}
+                {{ form_widget(postForm) }}
             </div>
-            {{ form_end(post_form) }}
+            {{ form_end(postForm) }}
         </div>
     </div>
 

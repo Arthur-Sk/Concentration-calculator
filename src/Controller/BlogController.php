@@ -3,14 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Post;
+use App\Forms\Blog\PostForm;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class BlogController extends Controller
@@ -20,40 +15,37 @@ class BlogController extends Controller
      * @Route("/blog/", name="blog")
      */
 
+//     Builds the post form
+
     public function postForm(Request $request)
     {
 
         $post = new Post();
+        $postForm = new PostForm();
+        $builder = $this->createFormBuilder($post);
+        $postForm = $postForm->buildForm($builder);
+        $postForm->handleRequest($request);
 
-        $post_form= $this->createFormBuilder($post)
-            ->add('title', null, array('label' => 'Title'))
-            ->add('body', TextType::class, array('label' => 'Text'))
-            ->add('username', TextType::class, array('label' => 'Name'))
-            ->add('save', SubmitType::class, array('label' => 'Add post','attr' => array('class' => 'btn btn-primary btn-add')))
-            ->getForm();
-
-        $post_form->handleRequest($request);
-
-        if ($post_form->isSubmitted() && $post_form->isValid()) {
-            $post_values = $post_form->getData();
+        if ($postForm->isSubmitted() && $postForm->isValid()) {
+            $postValues = $postForm->getData();
 
             $em = $this->getDoctrine()->getManager();
-            $em->persist($post_values);
+            $em->persist($postValues);
             $em->flush();
         }
-        $post_values = $this->getDoctrine()
+        $postValues = $this->getDoctrine()
             ->getRepository(Post::class)
             ->findAll();
         return $this->render('blog/index.html.twig', array(
-            'post_form' => $post_form->createView(),
-            'post_values' => $post_values
+            'postForm' => $postForm->createView(),
+            'postValues' => $postValues
         ));
     }
 
 
-//    Show posts by id, test
+//    Delete posts by id
     /**
-     * @Route("/blog/del{id}", name="delete_post")
+     * @Route("/blog/del{id}", name="deleteById")
      */
 
     public function deletePost($id)
@@ -74,7 +66,7 @@ class BlogController extends Controller
         $em->remove($post);
         $em->flush();
 
-        return new Response('Success with id = '. $id);
+        return;
 
     }
 }
