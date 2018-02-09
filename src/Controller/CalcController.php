@@ -8,9 +8,7 @@ use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class CalcController extends Controller
@@ -33,10 +31,6 @@ class CalcController extends Controller
     {
 
         $calc = new Calc();
-        $calc->setCb('0');
-        $calc->setCn('72');
-        $calc->setCv('6');
-        $calc->setVv('500');
 
         $calc_form = $this->createFormBuilder($calc)
             ->add('cb', NumberType::class, array('label' => 'Base liquid concentrate, mg/ml'))

@@ -5,6 +5,7 @@
     <title>{% block title %}Base title{% endblock %}</title>
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('build/css/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('build/app.css') }}">
         <link rel="stylesheet" href="{{ asset('bundles/css/app-demo.css') }}">
         <link rel="stylesheet" href="{{ asset('bundles/css/post.css') }}">
     {% endblock %}
@@ -31,6 +32,7 @@
 </div>
 {% block javascripts %}
     <script src="{{ asset('build/app.js') }}"></script>
+    <script src="{{ asset('build/manifest.json') }}"></script>
     <script src="{{ asset('bundles/js/post.js') }}"></script>
 {% endblock %}
 {% block footer %}

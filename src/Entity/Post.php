@@ -18,15 +18,15 @@ class Post
     /**
      * @ORM\Column(type="string", length=300)
      */
-    protected $title;
+    protected $title = 'test title';
     /**
      * @ORM\Column(type="string", length=1000)
      */
-    protected $body;
+    protected $body = 'test body';
     /**
      * @ORM\Column(type="string", length=100)
      */
-    protected $username;
+    protected $username = 'test username';
 
     /**
      * @return mixed

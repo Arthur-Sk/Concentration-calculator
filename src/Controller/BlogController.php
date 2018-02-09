@@ -24,14 +24,10 @@ class BlogController extends Controller
     {
 
         $post = new Post();
-        $post->setTitle('test title');
-        $post->setBody('test body');
-        $post->setUsername('test username');
-
 
         $post_form= $this->createFormBuilder($post)
-            ->add('title', TextType::class, array('label' => 'Title'))
-            ->add('body', TextType::class, array('label' => 'Body'))
+            ->add('title', null, array('label' => 'Title'))
+            ->add('body', TextType::class, array('label' => 'Text'))
             ->add('username', TextType::class, array('label' => 'Name'))
             ->add('save', SubmitType::class, array('label' => 'Add post','attr' => array('class' => 'btn btn-primary btn-add')))
             ->getForm();

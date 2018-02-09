@@ -15,7 +15,7 @@ class Calc
      *     maxMessage = "Base concentrate should be {{ limit }} or less.",
      * )
      */
-    protected $cb;
+    protected $cb = 0;
     /**
      * @Assert\NotBlank()
      * @Assert\Range(
@@ -25,7 +25,7 @@ class Calc
      *     maxMessage = "Nicotine (booster) concentrate should be {{ limit }} or less.",
      * )
      */
-    protected $cn;
+    protected $cn = 72;
     /**
      * @Assert\NotBlank()
      * @Assert\Range(
@@ -35,7 +35,7 @@ class Calc
      *     maxMessage = "Needed concentrate should be {{ limit }} or less.",
      * )
      */
-    protected $cv;
+    protected $cv = 6;
     /**
      * @Assert\NotBlank()
      * @Assert\Range(
@@ -44,7 +44,7 @@ class Calc
      *     minMessage = "Needed volume should be {{ limit }} or more.",
      * )
      */
-    protected $Vv;
+    protected $Vv = 500;
     protected $Vn;
     protected $Vb;
 
