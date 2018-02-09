@@ -38,14 +38,14 @@ class CalcController extends Controller
 
             $values = $calcForm->getData();
 
-            if ($calc->getCb()>$calc->getCn()){
+            if ($calc->getBaseConc()>$calc->getNicConc()){
                 $calcForm->addError(new FormError('Nicotine concentrate must be greater than the base liquid concentrate'));
                 return $this->render('calc/index.html.twig', array(
                     'calcForm' => $calcForm->createView(),
                 ));
             }
 
-            if ($calc->getCv()>$calc->getCn() || $calc->getCv()<$calc->getCb()){
+            if ($calc->getFinalConc()>$calc->getNicConc() || $calc->getFinalConc()<$calc->getBaseConc()){
                 $calcForm->addError(new FormError('Needed concentrate must be greater than the base liquid concentrate and less than the nicotine concentrate'));
                 return $this->render('calc/index.html.twig', array(
                     'calcForm' => $calcForm->createView(),
@@ -55,8 +55,8 @@ class CalcController extends Controller
             return $this->render('calc/index.html.twig', array(
                 'calcForm' => $calcForm->createView(),
                 'values' => $values,
-                'Vn' => $calc->getVn($calc->getVv(),$calc->getCv(),$calc->getCb(),$calc->getCn()),
-                'Vb' => $calc->getVb($calc->getVv(),$calc->getCv(),$calc->getCb(),$calc->getCn())
+                'NicVol' => $calc->getNicVol($calc->getFinalVol(),$calc->getFinalConc(),$calc->getBaseConc(),$calc->getNicConc()),
+                'BaseVol' => $calc->getBaseVol($calc->getFinalVol(),$calc->getFinalConc(),$calc->getBaseConc(),$calc->getNicConc())
             ));
         }
 

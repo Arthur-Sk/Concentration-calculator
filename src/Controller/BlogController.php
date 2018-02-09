@@ -6,11 +6,12 @@ use App\Entity\Post;
 use App\Forms\Blog\PostForm;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class BlogController extends Controller
 {
-   
+
     /**
      * @Route("/blog/", name="blog")
      */
@@ -66,7 +67,7 @@ class BlogController extends Controller
         $em->remove($post);
         $em->flush();
 
-        return;
+        return new Response('',200);
 
     }
 }

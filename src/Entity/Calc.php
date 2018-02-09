@@ -15,7 +15,7 @@ class Calc
      *     maxMessage = "Base concentrate should be {{ limit }} or less.",
      * )
      */
-    protected $cb = 0;
+    protected $BaseConc = 0;
     /**
      * @Assert\NotBlank()
      * @Assert\Range(
@@ -25,7 +25,7 @@ class Calc
      *     maxMessage = "Nicotine (booster) concentrate should be {{ limit }} or less.",
      * )
      */
-    protected $cn = 72;
+    protected $NicConc = 72;
     /**
      * @Assert\NotBlank()
      * @Assert\Range(
@@ -35,7 +35,7 @@ class Calc
      *     maxMessage = "Needed concentrate should be {{ limit }} or less.",
      * )
      */
-    protected $cv = 6;
+    protected $FinalConc = 6;
     /**
      * @Assert\NotBlank()
      * @Assert\Range(
@@ -44,58 +44,58 @@ class Calc
      *     minMessage = "Needed volume should be {{ limit }} or more.",
      * )
      */
-    protected $Vv = 500;
-    protected $Vn;
-    protected $Vb;
+    protected $FinalVol = 500;
+    protected $NicVol;
+    protected $BaseVol;
 
-    public function getCb()
+    public function getBaseConc()
     {
-        return $this->cb;
+        return $this->BaseConc;
     }
 
-    public function setCb($cb)
+    public function setBaseConc($BaseConc)
     {
-        $this->cb = $cb;
+        $this->BaseConc = $BaseConc;
     }
 
-    public function getCn()
+    public function getNicConc()
     {
-        return $this->cn;
+        return $this->NicConc;
     }
 
-    public function setCn($cn)
+    public function setNicConc($NicConc)
     {
-        $this->cn = $cn;
+        $this->NicConc = $NicConc;
     }
 
-    public function getCv()
+    public function getFinalConc()
     {
-        return $this->cv;
+        return $this->FinalConc;
     }
 
-    public function setCv($cv)
+    public function setFinalConc($FinalConc)
     {
-        $this->cv = $cv;
+        $this->FinalConc = $FinalConc;
     }
 
-    public function getVv()
+    public function getFinalVol()
     {
-        return $this->Vv;
+        return $this->FinalVol;
     }
 
-    public function setVv($Vv)
+    public function setFinalVol($FinalVol)
     {
-        $this->Vv = $Vv;
+        $this->FinalVol = $FinalVol;
     }
 
-    public function getVn($Vv,$cv,$cb,$cn)
+    public function getNicVol($FinalVol,$FinalConc,$BaseConc,$NicConc)
     {
-        return $this->Vn = ($Vv*($cv-$cb))/($cn-$cb);
+        return $this->NicVol = ($FinalVol*($FinalConc-$BaseConc))/($NicConc-$BaseConc);
     }
 
-    public function getVb($Vv,$cv,$cb,$cn)
+    public function getBaseVol($FinalVol,$FinalConc,$BaseConc,$NicConc)
     {
-        return $this->Vb = ($Vv*($cv-$cn))/($cb-$cn);
+        return $this->BaseVol = ($FinalVol*($FinalConc-$NicConc))/($BaseConc-$NicConc);
     }
 
 }
