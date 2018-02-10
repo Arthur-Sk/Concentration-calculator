@@ -46,7 +46,7 @@ class BlogController extends Controller
 
 //    Delete posts by id
     /**
-     * @Route("/blog/del{id}", name="deleteById")
+     * @Route("/blog/del/{id}", name="deleteById")
      */
 
     public function deletePost($id)
@@ -71,9 +71,9 @@ class BlogController extends Controller
 
     }
 
-    //    Delete posts by id
+    //    Update posts by id
     /**
-     * @Route("/blog/edit{id}", name="editById")
+     * @Route("/blog/edit/{id}", name="editById")
      */
 
     public function updatePost($id)
