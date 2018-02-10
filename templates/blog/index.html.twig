@@ -5,25 +5,44 @@
 {% block body %}
     <div class="row">
         <div class="col-sm-9 posts">
-    {% if postValues is defined %}
-        {% for post in postValues %}
+            {% if postValues is not empty %}
+                {% for post in postValues|reverse %}
 
 
-            <article class="post">
-                <h2><a href="#">{{ post.title }}</a></h2>
-                <p class="post-metadata">
-                    <span class="metadata"><i class="fas fa-calendar"></i>Date</span>
-                    <span class="metadata"><i class="fas fa-user"></i>{{ post.username }}</span>
-                </p>
-                <p>{{ post.body }}</p>
-            </article>
-            <div class="row postBtns">
-                <a class="btn btn-primary btn-sm btn-del" data-postid="{{ post.id }}">Delete</a>
-                <a class="btn btn-primary btn-sm btn-edit" data-postid="{{ post.id }}">Edit</a>
-            </div>
+                    <article id="post{{ post.id }}" class="post">
+                        <h2><a href="#">{{ post.title }}</a></h2>
+                        <p class="post-metadata">
+                            <span class="metadata"><i class="fas fa-calendar"></i>Date</span>
+                            <span class="metadata"><i class="fas fa-user"></i>{{ post.username }}</span>
+                        </p>
+                        <p>{{ post.body }}</p>
+                    </article>
+                    <form id="form-edit{{ post.id }}" class="hidden">
+                        <div class="form-group">
+                            <input id="postTitle{{ post.id }}" type="text" class="form-control" value="{{ post.title }}">
+                        </div>
+                        <p class="post-metadata">
+                            <span class="metadata"><i class="fas fa-calendar"></i>Date</span>
+                            <span class="metadata"><i class="fas fa-user"></i>{{ post.username }}</span>
+                        </p>
+                        <div class="form-group">
+                            <input id="postBody{{ post.id }}" type="text" class="form-control" value="{{ post.body }}">
+                        </div>
+                    </form>
+                    <div class="row">
+                        <a class="btn btn-primary btn-sm btn-del" data-postid="{{ post.id }}">Delete</a>
+                        <a class="btn btn-primary btn-sm btn-edit" data-postid="{{ post.id }}">Edit</a>
+                        <span style="margin-left: 1em">
+                            <a id="save{{ post.id }}" class="btn btn-success btn-sm btn-save hidden" data-postid="{{ post.id }}">Save</a>
+                            <a id="cancel{{ post.id }}" class="btn btn-default btn-sm btn-cancel hidden" data-postid="{{ post.id }}">Cancel</a>
+                        </span>
+                    </div>
 
-        {% endfor %}
-    {% endif %}
+
+                {% endfor %}
+            {% else %}
+                <p>Ooops, nothing here</p>
+            {% endif %}
         </div>
         <div class="sidebar well well-lg col-sm-3">
             {{ form_start(postForm) }}
@@ -33,31 +52,5 @@
             {{ form_end(postForm) }}
         </div>
     </div>
-
-    <!-- Modal, test -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        Launch demo modal
-    </button>
-
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
 {% endblock %}

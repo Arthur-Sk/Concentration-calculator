@@ -70,4 +70,35 @@ class BlogController extends Controller
         return new Response('',200);
 
     }
+
+    //    Delete posts by id
+    /**
+     * @Route("/blog/edit{id}", name="editById")
+     */
+
+    public function updatePost($id)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $post = $em
+            ->getRepository(Post::class)
+            ->findOneBy(array('id'=>$id));
+
+        if (!$post) {
+            throw $this->createNotFoundException(
+                'No post found for id ' . $id
+            );
+        };
+
+        $title = $_GET['title'];
+        $body = $_GET['body'];
+
+        $post->setTitle($title);
+        $post->setBody($body);
+
+        $em->flush();
+
+        return new Response('',200);
+
+    }
 }

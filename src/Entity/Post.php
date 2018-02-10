@@ -39,7 +39,7 @@ class Post
     /**
      * @param mixed $id
      */
-    public function setId($id): void
+    public function setId($id)
     {
         $this->id = $id;
     }
@@ -55,7 +55,7 @@ class Post
     /**
      * @param mixed $title
      */
-    public function setTitle($title): void
+    public function setTitle($title)
     {
         $this->title = $title;
     }
@@ -71,7 +71,7 @@ class Post
     /**
      * @param mixed $body
      */
-    public function setBody($body): void
+    public function setBody($body)
     {
         $this->body = $body;
     }
@@ -87,7 +87,7 @@ class Post
     /**
      * @param mixed $username
      */
-    public function setUsername($username): void
+    public function setUsername($username)
     {
         $this->username = $username;
     }
