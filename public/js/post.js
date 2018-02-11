@@ -16,6 +16,7 @@ $(document).ready(function() {
                 refresh('.posts');
             }
         });
+
         // Edit post button
             }).on('click','.btn-edit',function () {
                 var id = $(this).data('postid');
@@ -23,6 +24,7 @@ $(document).ready(function() {
                 $("#cancel"+id).removeClass('hidden');
                 $("#post"+id).addClass('hidden');
                 $("#form-edit"+id).removeClass('hidden');
+
                 // Edit post cancel button
             }).on('click','.btn-cancel',function () {
                 var id = $(this).data('postid');
@@ -30,6 +32,7 @@ $(document).ready(function() {
                 $("#cancel"+id).addClass('hidden');
                 $("#post"+id).removeClass('hidden');
                 $("#form-edit"+id).addClass('hidden');
+
                 // Edit post save button
             }).on('click','.btn-save', function () {
                 var id = $(this).data('postid');
