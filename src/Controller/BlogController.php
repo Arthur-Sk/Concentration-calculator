@@ -29,7 +29,8 @@ class BlogController extends Controller
 
         if ($postForm->isSubmitted() && $postForm->isValid()) {
             $postValues = $postForm->getData();
-
+            $date = new \DateTime('now', new \DateTimeZone('Europe/Riga'));
+            $post->setDateCreated($date);
             $em = $this->getDoctrine()->getManager();
             $em->persist($postValues);
             $em->flush();

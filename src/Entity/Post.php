@@ -29,6 +29,11 @@ class Post
     protected $username = 'test username';
 
     /**
+     * @ORM\Column(type="datetime")
+     */
+    protected $dateCreated;
+
+    /**
      * @return mixed
      */
     public function getId()
@@ -91,6 +96,24 @@ class Post
     {
         $this->username = $username;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getDateCreated()
+    {
+        return $this->dateCreated;
+    }
+
+    /**
+     * @param mixed $dateCreated
+     */
+    public function setDateCreated(\DateTime $dateCreated)
+    {
+        $this->dateCreated = $dateCreated;
+    }
+
+
 
 
 }

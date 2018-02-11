@@ -12,7 +12,7 @@
                     <article id="post{{ post.id }}" class="post">
                         <h2><a href="#">{{ post.title }}</a></h2>
                         <p class="post-metadata">
-                            <span class="metadata"><i class="fas fa-calendar"></i>Date</span>
+                            <span class="metadata"><i class="fas fa-calendar"></i>{{ post.dateCreated.date|date("Y-m-d H:i") }}</span>
                             <span class="metadata"><i class="fas fa-user"></i>{{ post.username }}</span>
                         </p>
                         <p>{{ post.body }}</p>
@@ -22,7 +22,7 @@
                             <input id="postTitle{{ post.id }}" type="text" class="form-control" value="{{ post.title }}">
                         </div>
                         <p class="post-metadata">
-                            <span class="metadata"><i class="fas fa-calendar"></i>Date</span>
+                            <span class="metadata"><i class="fas fa-calendar"></i>{{ post.dateCreated.date|date("Y-m-d H:i") }}</span>
                             <span class="metadata"><i class="fas fa-user"></i>{{ post.username }}</span>
                         </p>
                         <div class="form-group">
