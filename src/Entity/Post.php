@@ -36,6 +36,14 @@ class Post
     /**
      * @return mixed
      */
+
+    public function setCurrentDate()
+    {
+        $dateCreated = new \DateTime('now', new \DateTimeZone('Europe/Riga'));
+        $this->dateCreated = $dateCreated;
+    }
+
+    // Getters and setters
     public function getId()
     {
         return $this->id;
