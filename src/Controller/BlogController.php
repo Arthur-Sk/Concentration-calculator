@@ -76,7 +76,7 @@ class BlogController extends Controller
      * @Route("/blog/edit/{id}", name="editById")
      */
 
-    public function updatePost($id)
+    public function updatePost($id,Request $request)
     {
 
         $em = $this->getDoctrine()->getManager();
@@ -90,11 +90,8 @@ class BlogController extends Controller
             );
         };
 
-        $title = $_GET['title'];
-        $body = $_GET['body'];
-
-        $post->setTitle($title);
-        $post->setBody($body);
+        $post->setTitle($request->get('title'));
+        $post->setBody($request->get('body'));
 
         $em->flush();
 
