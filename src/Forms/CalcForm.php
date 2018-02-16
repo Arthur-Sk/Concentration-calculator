@@ -3,11 +3,13 @@
 
 namespace App\Forms;
 
+use App\Entity\Calc;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-class CalcForm
+
+class CalcForm extends Calc
 {
 
     public function buildForm(FormBuilderInterface $builder){
@@ -21,5 +23,6 @@ class CalcForm
 
         return $builder->getForm();
     }
+
 
 }

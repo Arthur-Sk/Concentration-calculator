@@ -2,10 +2,16 @@
 
 namespace App\Entity;
 
+use App\Forms\CalcForm;
+use Symfony\Component\Form\Form;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Form\FormError;
+
 
 class Calc
 {
+
+    public $errorMessage;
     /**
      * @Assert\NotBlank()
      * @Assert\Range(
@@ -47,6 +53,31 @@ class Calc
     protected $FinalVol = 500;
     protected $NicVol;
     protected $BaseVol;
+
+    /**
+     * @Assert\IsTrue(message="Nicotine concentrate must be greater than the base liquid concentrate")
+     *
+     */
+    public function isNicConcGreater(){
+        return $this->BaseConc <= $this->NicConc;
+    }
+
+    /**
+     * @Assert\IsTrue(message="Needed concentrate must be greater than the base liquid concentrate")
+     *
+     */
+    public function isFinalConcGreater(){
+        return $this->FinalConc >= $this->BaseConc;
+    }
+
+    /**
+     * @Assert\IsTrue(message="Needed concentrate must be less than the nicotine concentrate")
+     *
+     */
+    public function isFinalConcLess(){
+        return $this->FinalConc <= $this->NicConc;
+    }
+
 
     public function getBaseConc()
     {

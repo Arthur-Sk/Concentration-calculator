@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\Calc;
 use App\Forms\CalcForm;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -25,7 +24,7 @@ class CalcController extends Controller
      * @Route("/calc/", name="calc")
      */
 
-    public function calc(Request $request)
+    public function calcIndex(Request $request)
     {
 
         $calc = new Calc();
@@ -35,33 +34,18 @@ class CalcController extends Controller
         $calcForm->handleRequest($request);
 
         if ($calcForm->isSubmitted() && $calcForm->isValid()) {
-
-            $values = $calcForm->getData();
-
-            if ($calc->getBaseConc()>$calc->getNicConc()){
-                $calcForm->addError(new FormError('Nicotine concentrate must be greater than the base liquid concentrate'));
-                return $this->render('calc/index.html.twig', array(
-                    'calcForm' => $calcForm->createView(),
-                ));
-            }
-
-            if ($calc->getFinalConc()>$calc->getNicConc() || $calc->getFinalConc()<$calc->getBaseConc()){
-                $calcForm->addError(new FormError('Needed concentrate must be greater than the base liquid concentrate and less than the nicotine concentrate'));
-                return $this->render('calc/index.html.twig', array(
-                    'calcForm' => $calcForm->createView(),
-                ));
-            }
-
             return $this->render('calc/index.html.twig', array(
                 'calcForm' => $calcForm->createView(),
-                'values' => $values,
+                'values' => $calcForm->getData(),
                 'NicVol' => $calc->getNicVol($calc->getFinalVol(),$calc->getFinalConc(),$calc->getBaseConc(),$calc->getNicConc()),
                 'BaseVol' => $calc->getBaseVol($calc->getFinalVol(),$calc->getFinalConc(),$calc->getBaseConc(),$calc->getNicConc())
             ));
         }
 
+
         return $this->render('calc/index.html.twig', array(
             'calcForm' => $calcForm->createView(),
+            'formErrors' => $calcForm->getErrors()
         ));
     }
 }
