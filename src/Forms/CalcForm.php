@@ -8,7 +8,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-
 class CalcForm extends Calc
 {
 
@@ -23,6 +22,5 @@ class CalcForm extends Calc
 
         return $builder->getForm();
     }
-
 
 }

@@ -37,15 +37,14 @@ class CalcController extends Controller
             return $this->render('calc/index.html.twig', array(
                 'calcForm' => $calcForm->createView(),
                 'values' => $calcForm->getData(),
-                'NicVol' => $calc->getNicVol($calc->getFinalVol(),$calc->getFinalConc(),$calc->getBaseConc(),$calc->getNicConc()),
-                'BaseVol' => $calc->getBaseVol($calc->getFinalVol(),$calc->getFinalConc(),$calc->getBaseConc(),$calc->getNicConc())
+                'NicVol' => $calc->getNicVol(),
+                'BaseVol' => $calc->getBaseVol()
             ));
         }
 
 
         return $this->render('calc/index.html.twig', array(
-            'calcForm' => $calcForm->createView(),
-            'formErrors' => $calcForm->getErrors()
+            'calcForm' => $calcForm->createView()
         ));
     }
 }

@@ -78,6 +78,15 @@ class Calc
         return $this->FinalConc <= $this->NicConc;
     }
 
+    public function getNicVol()
+    {
+        return $this->NicVol = ($this->FinalVol*($this->FinalConc-$this->BaseConc))/($this->NicConc-$this->BaseConc);
+    }
+
+    public function getBaseVol()
+    {
+        return $this->BaseVol = ($this->FinalVol*($this->FinalConc-$this->NicConc))/($this->BaseConc-$this->NicConc);
+    }
 
     public function getBaseConc()
     {
@@ -117,16 +126,6 @@ class Calc
     public function setFinalVol($FinalVol)
     {
         $this->FinalVol = $FinalVol;
-    }
-
-    public function getNicVol($FinalVol,$FinalConc,$BaseConc,$NicConc)
-    {
-        return $this->NicVol = ($FinalVol*($FinalConc-$BaseConc))/($NicConc-$BaseConc);
-    }
-
-    public function getBaseVol($FinalVol,$FinalConc,$BaseConc,$NicConc)
-    {
-        return $this->BaseVol = ($FinalVol*($FinalConc-$NicConc))/($BaseConc-$NicConc);
     }
 
 }
