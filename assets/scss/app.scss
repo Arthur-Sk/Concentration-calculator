@@ -48,6 +48,9 @@ body {
 }
 
 // Buttons
+.btn-primary {
+  background-color: darken($defaultColor, 50%);
+}
 .postBtns {
   margin-left: 0;
   margin-bottom: 2em;
