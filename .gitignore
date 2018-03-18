@@ -2,9 +2,11 @@
 /node_modules/
 .env
 /public/bundles/
+/public/build/
 /var/
 /vendor/
 /src/Migrations/
+
 ###< symfony/framework-bundle ###
 
 ###> symfony/web-server-bundle ###
