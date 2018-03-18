@@ -37,6 +37,9 @@ body {
 // NavBar
 .navbar {
   background-color: $defaultColor;
+  .navbar-brand {
+    color: darken($defaultColor,80%);
+  }
 }
 
 // SideBar
@@ -49,7 +52,7 @@ body {
 
 // Buttons
 .btn-primary {
-  background-color: darken($defaultColor, 50%);
+  background-color: darken($defaultColor, 60%);
 }
 .postBtns {
   margin-left: 0;
