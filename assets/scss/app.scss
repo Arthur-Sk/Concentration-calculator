@@ -8,3 +8,66 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 @import "~fontawesome/scss/fa-solid.scss";
 @import "~fontawesome/scss/fa-brands.scss";
 
+
+$defaultColor: #e6eeff;
+$footerHeight: 50px;
+
+@mixin rightDefMargin() {
+  margin-right: auto;
+  padding-right: 3px;
+}
+
+// Sticky footer
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  margin-bottom: $footerHeight; /* Margin bottom by footer height */
+}
+.panel-footer{
+  position: absolute;
+  bottom: 0 !important;
+  width: 100%;
+  height: $footerHeight; /* Set the fixed height of the footer here */
+  line-height: 0.5*$footerHeight; /* Vertically center the text there */
+  background-color: $defaultColor;
+}
+
+// NavBar
+.navbar {
+  background-color: $defaultColor;
+}
+
+// SideBar
+
+.sidebar {
+  background-color: $defaultColor;
+  text-align: right;
+
+}
+
+// Buttons
+.postBtns {
+  margin-left: 0;
+  margin-bottom: 2em;
+  margin-top: -1.4em;
+}
+.btn-add {
+  margin-top: 0.5em;
+}
+.post-footer{
+  margin-bottom: $footerHeight;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+// Fonts
+.fas {
+  @include rightDefMargin
+}
+
+// Forms
+.postFormField {
+  margin: 0.3em;
+}

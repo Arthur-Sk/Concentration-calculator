@@ -2,8 +2,7 @@ require('../scss/app.scss');
 
 var $ = require('jquery');
 global.$ = global.jQuery = $;
-// JS is equivalent to the normal "bootstrap" package
-// no need to set this to a variable, just require it
+
 require('bootstrap-sass');
 
 // loads the Bootstrap jQuery plugins
